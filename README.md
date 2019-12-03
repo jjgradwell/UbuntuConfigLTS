@@ -6,7 +6,7 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-Then install thses missing utilities and Apache2
+Then install these missing utilities and Apache2
 ```
 sudo apt install -y curl wget zip unzip apache2
 ```
