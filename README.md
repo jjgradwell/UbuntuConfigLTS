@@ -62,6 +62,7 @@ Update the user/owner of the document root of your server to www-data, and set f
 ```
 sudo chown www-data:www-data /var/www/html -R
 sudo chmod -R 755 /var/www/html
+sudo setfacl -R -m "u:username:rwx" /var/www/html/
 sudo setfacl -R -m "g:username:rwx" /var/www/html/
 ```
 
