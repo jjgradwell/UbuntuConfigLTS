@@ -4,6 +4,7 @@ From a fresh installation of Ubuntu run the following commands to update and upg
 ```
 sudo apt update
 sudo apt upgrade -y
+sudo apt install -y curl wget zip unzip
 ```
 
 ## Add repositories for latest versions of phpMyAdmin/Apache
@@ -15,10 +16,13 @@ sudo apt install software-properties-common
 sudo apt update
 ```
 
-# Install Apache and missing utilities
+# Install Apache
 ```
-sudo apt install -y curl wget zip unzip apache2
+sudo apt install -y apache2
 sudo systemctl status apache2
+sudo a2enmod http2
+sudo a2enmod brotli
+sudo a2enmod rewrite
 ```
 
 ## Allow full access for Apache in firewall
@@ -26,11 +30,7 @@ sudo systemctl status apache2
 sudo ufw allow in "Apache Full"
 ```
 
-## Enable Brotli compression
-```
-a2enmod brotli
-```
-
+## Brotli configuration
 Now add these line to /usr/local/apache/conf.d/brotli.conf
 ```
 LoadModule brotli_module modules/mod_brotli.so
@@ -52,9 +52,8 @@ Header append Vary User-Agent env=!dont-vary
 </IfModule>
 ```
 
-## Enable mod_rewrite and restart Apache
+## Restart Apache
 ```
-sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
 
@@ -76,17 +75,15 @@ sudo apt install php-fpm php-common php-cli php-json php-opcache php-readline ph
 # Change Apache config files
 Update /etc/apache2/mods-enabled/dir.conf
 ```
-# Change this line
+# add index.php to this line
 DirectoryIndex index.html index.cgi index.pl index.xhtml index.htm
-# To
-DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 ```
 
 ## Update the user/owner of the document root
 ```
 sudo chown www-data:www-data /var/www/html -R
 sudo chmod -R 755 /var/www/html
-sudo setfacl -R -m "u:username:rwx" /var/www/html/  // Allow your account to edit protected files
+sudo setfacl -R -m "u:username:rwx" /var/www/html/  // Allow your account to edit
 ```
 
 ## Update /etc/apache2/apache2.conf
@@ -98,9 +95,9 @@ Include /etc/phpmyadmin/apache.conf
 ## Misc phpMyAdmin errors
 In /usr/share/phpmyadmin/libraries/plugin_interface.lib.php
 ```
-# Change this line
+# Find this line
   if ($options != null && count($options) > 0) {
-# To match this line
+# And replace with
   if ($options != null && count((array)$options) > 0) {
 ```
 
