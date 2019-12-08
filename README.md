@@ -16,6 +16,16 @@ sudo apt install software-properties-common
 sudo apt update
 ```
 
+# Install OpenSSH server, enable firewall and set permissions
+```
+sudo apt-get install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo ufw allow ssh
+sudo ufw enable
+sudo ufw status
+```
+
 # Install Apache and enable mods
 ```
 sudo apt install -y apache2
@@ -59,7 +69,7 @@ sudo systemctl restart apache2
 sudo apt install mariadb-server
 sudo systemctl status mariadb
 sudo mysql_secure_installation
-sudo mysql -u root -p    // Test root password
+sudo mysql -u root -p    /* Test root password */
 ```
 
 # Install PHP7.3 and phpMyAdmin
@@ -79,7 +89,12 @@ DirectoryIndex index.html index.cgi index.pl index.xhtml index.htm
 ```
 sudo chown www-data:www-data /var/www/html -R
 sudo chmod -R 755 /var/www/html
-sudo setfacl -R -m "u:username:rwx" /var/www/html/  // Allow your account to edit
+```
+
+## Update File Access Control Lists
+Change `username` to match the account you login with
+```
+sudo setfacl -R -m "u:username:rwx" /var/www/html/   /* Allow your account to edit, write to files */
 ```
 
 ## Update /etc/apache2/apache2.conf
