@@ -7,7 +7,7 @@ sudo apt upgrade -y
 sudo apt install -y curl wget zip unzip
 ```
 
-## Add repositories for latest versions of phpMyAdmin/Apache
+## Add repositories for latest Apache/PHP/phpMyAdmin
 ```
 sudo add-apt-repository ppa:ondrej/apache2
 sudo add-apt-repository ppa:ondrej/php
@@ -16,18 +16,15 @@ sudo apt install software-properties-common
 sudo apt update
 ```
 
-# Install Apache
+# Install Apache and enable mods
 ```
 sudo apt install -y apache2
 sudo systemctl status apache2
+sudo ufw allow in "Apache Full"
+
 sudo a2enmod http2
 sudo a2enmod brotli
 sudo a2enmod rewrite
-```
-
-## Allow full access for Apache in firewall
-```
-sudo ufw allow in "Apache Full"
 ```
 
 ## Brotli configuration
@@ -57,8 +54,7 @@ Header append Vary User-Agent env=!dont-vary
 sudo systemctl restart apache2
 ```
 
-
-# Install MariaDB and check the status
+# Install MariaDB
 ```
 sudo apt install mariadb-server
 sudo systemctl status mariadb
