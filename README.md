@@ -16,7 +16,7 @@ sudo apt install software-properties-common
 sudo apt update
 ```
 
-# Install OpenSSH server, enable firewall and set permissions
+## Install OpenSSH server, enable firewall and set permissions
 ```
 sudo apt-get install openssh-server
 sudo systemctl enable ssh
@@ -26,7 +26,7 @@ sudo ufw enable
 sudo ufw status
 ```
 
-# Install Apache and enable mods
+## Install Apache and enable mods
 ```
 sudo apt install -y apache2
 sudo systemctl status apache2
@@ -64,7 +64,7 @@ Header append Vary User-Agent env=!dont-vary
 sudo systemctl restart apache2
 ```
 
-# Install MariaDB
+## Install MariaDB
 ```
 sudo apt install mariadb-server
 sudo systemctl status mariadb
@@ -72,16 +72,16 @@ sudo mysql_secure_installation
 sudo mysql -u root -p    /* Test root password */
 ```
 
-# Install PHP7.3 and phpMyAdmin
+## Install PHP7.3 and phpMyAdmin
 ```
 sudo apt install php libapache2-mod-php php-mysql php-gettext
 sudo apt install php-fpm php-common php-cli php-json php-opcache php-readline php-mbstring php-xml php-gd php-curl php-imap php-intl php-bcmath php-zip phpmyadmin
 ```
 
-# Change Apache config files
+## Change Apache config files
 Update /etc/apache2/mods-enabled/dir.conf
 ```
-# add index.php to this line
+/* add index.php to this line */
 DirectoryIndex index.html index.cgi index.pl index.xhtml index.htm
 ```
 
@@ -104,7 +104,7 @@ Include /etc/phpmyadmin/apache.conf
 ```
 
 ## Misc phpMyAdmin errors
-In /usr/share/phpmyadmin/libraries/plugin_interface.lib.php
+In `/usr/share/phpmyadmin/libraries/plugin_interface.lib.php`
 ```
 # Find this line
   if ($options != null && count($options) > 0) {
@@ -112,7 +112,7 @@ In /usr/share/phpmyadmin/libraries/plugin_interface.lib.php
   if ($options != null && count((array)$options) > 0) {
 ```
 
-In /usr/share/phpmyadmin/libraries/sql.lib.php find the function named PMA_isRememberSortingOrder
+In `/usr/share/phpmyadmin/libraries/sql.lib.php` find the function named PMA_isRememberSortingOrder
 ```
 Change this
   ['select_expr'] == 1)
@@ -125,14 +125,14 @@ To this
   ['select_expr'][0] == '*'))
 ```
 
-# Install SAMBA
+## Install SAMBA
 ```
 sudo apt install samba samba-common-bin
 sudo systemctl start smbd
 sudo systemctl start nmbd
 ```
 
-Create a share in /etc/samba/smb.conf
+### Create a share in /etc/samba/smb.conf
 ```
 # add to bottom of file 
   [Private]
