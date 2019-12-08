@@ -9,39 +9,33 @@ sudo apt upgrade -y
 # Add repositories for latest versions of phpMyAdmin/Apache
 ```
 sudo add-apt-repository ppa:ondrej/apache2
+sudo add-apt-repository ppa:ondrej/php
 sudo add-apt-repository ppa:phpmyadmin/ppa
+sudo apt install software-properties-common
 sudo apt update
 ```
 
-Then install these missing utilities and Apache2
+# Install Apache and missing utilities
 ```
 sudo apt install -y curl wget zip unzip apache2
+sudo systemctl status apache2
 ```
 
-Check the status of Apache2 to ensure that is running
-```
-systemctl status apache2
-```
-
-Change settings in UFW (Ubuntu Firewall) to allow full access for Apache2
+# Allow full access for Apache in firewall
 ```
 sudo ufw allow in "Apache Full"
 ```
 
-Enable mod_rewrite and restart Apache2
+Enable mod_rewrite and restart Apache
 ```
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
 
-Install MariaDB and check the status
+# Install MariaDB and check the status
 ```
 sudo apt install mariadb-server
 sudo systemctl status mariadb
-```
-
-Secure your MariaDB installation
-```
 sudo mysql_secure_installation
 ```
 
@@ -50,13 +44,17 @@ Test the password you supplied for the root user account
 sudo mysql -u root -p
 ```
 
-Install PHP7.2 and required modules, and phpMyAdmin
+# Install PHP7.3 and required modules, and phpMyAdmin
 ```
-sudo apt install php libapache2-mod-php php-mysql
-sudo apt install php7.2 php7.2-fpm php7.2-mysql php-common php7.2-cli php7.2-common php7.2-json php7.2-opcache php7.2-readline php7.2-mbstring php7.2-xml php7.2-gd php7.2-curl php7.2-imap php7.2-zip php7.2-intl php7.2-mbstring php7.2-bcmath  php7.2-zip
-sudo apt install phpmyadmin php-gettext
+sudo apt install php libapache2-mod-php7.3 php-mysql php-gettext
+sudo apt install php7.3-fpm php7.3-mysql php-common php7.3-cli php7.3-json php7.3-opcache php7.3-readline php7.3-mbstring php7.3-xml php7.3-gd php7.3-curl php7.3-imap php7.3-intl php7.3-mbstring php7.3-bcmath php7.3-zip
+or
+sudo apt install php7.3-cli php7.3-fpm php7.3-json php7.3-pdo php7.3-mysql php7.3-zip php7.3-gd php7.3-mbstring php7.3-curl php7.3-xml php7.3-bcmath php7.3-json
+
+sudo apt install phpmyadmin
 ```
 
+# Change Apache config files
 Update /etc/apache2/mods-enabled/dir.conf
 ```
 # Change this line
@@ -65,22 +63,20 @@ DirectoryIndex index.html index.cgi index.pl index.xhtml index.htm
 DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
 ```
 
-Update the user/owner of the document root of your server to www-data, and set file access controls for `username`
+## Update the user/owner of the document root
 ```
 sudo chown www-data:www-data /var/www/html -R
 sudo chmod -R 755 /var/www/html
-sudo setfacl -R -m "u:username:rwx" /var/www/html/
-sudo setfacl -R -m "g:username:rwx" /var/www/html/
+sudo setfacl -R -m "u:username:rwx" /var/www/html/  // Allow your account to edit protected files
 ```
 
-Update /etc/apache2/apache2.conf to include the configuration file for phpMyAdmin if not already included at the bottom of file
+## Update /etc/apache2/apache2.conf
 ```
 # add to bottom of file if not already there
 Include /etc/phpmyadmin/apache.conf
 ```
 
-# Misc phpMyAdmin errors
-
+## Misc phpMyAdmin errors
 In /usr/share/phpmyadmin/libraries/plugin_interface.lib.php
 ```
 # Change this line
@@ -95,7 +91,6 @@ Change this
   ['select_expr'] == 1)
 To this
   ['select_expr']) == 1)
-  
   
 Change this
   ['select_expr'][0] == '*')))
@@ -153,15 +148,11 @@ testparm
 ```
 
 
-Create samba users and set passwords where `username` is a valid system username
+# Create samba users and set passwords where `username` is a valid system username
 ```
 sudo adduser `username`
 sudo smbpasswd -a `username`
 sudo groupadd samba
 sudo gpasswd -a `username` samba
-```
-
-Restart the Samba server
-```
 sudo systemctl restart smbd nmbd
 ```
