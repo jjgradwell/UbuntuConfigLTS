@@ -6,6 +6,13 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
+# Add repositories for latest versions of phpMyAdmin/Apache
+```
+sudo add-apt-repository ppa:ondrej/apache2
+sudo add-apt-repository ppa:phpmyadmin/ppa
+sudo apt update
+```
+
 Then install these missing utilities and Apache2
 ```
 sudo apt install -y curl wget zip unzip apache2
