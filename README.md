@@ -75,7 +75,7 @@ exit;
 Optional - Update to latest stable release
 ```
 cd ~
-wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.2-all-languages.zip
+wget https://files.phpmyadmin.net/phpMyAdmin/4.9.2/phpMyAdmin-4.9.2-all-languages.zip
 sudo apt install unzip
 unzip phpMyAdmin-4.9.2-all-languages.zip
 sudo mv /usr/share/phpmyadmin /usr/share/phpmyadmin-original
@@ -91,6 +91,7 @@ Change it to `define('CONFIG_DIR', '/etc/phpmyadmin/');`
 Save and close the file. Then create the tmp folder to store cache files. `sudo mkdir /usr/share/phpmyadmin/tmp`
 
 Change user ownership and group ownership to www-data. `sudo chown www-data:www-data /usr/share/phpmyadmin/tmp`
+
 
 ## Step 6: Install LetsEncrypt certbot
 ```
