@@ -36,3 +36,27 @@ sudo a2enmod php7.2
 sudo systemctl restart apache2
 php --version
 ```
+
+Switch to using FPM
+```
+sudo a2dismod php7.2
+sudo apt install php7.2-fpm
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php7.2-fpm
+sudo systemctl restart apache2
+```
+
+## Step 5: Install phpMyAdmin
+```
+sudo apt update
+sudo apt install phpmyadmin
+```
+
+## Step 6: Install LetsEncrypt certbot
+```
+sudo apt install certbot python3-certbot-apache
+```
+And then run the following command to get a certificate
+```
+sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --must-staple -d example.com --email you@example.com
+```
