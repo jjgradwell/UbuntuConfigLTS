@@ -8,7 +8,9 @@ Install Ubuntu 18.04 Server from https://ubuntu.com/download/server
 ```
 sudo apt update
 sudo apt upgrade
+sudo setfacl -R -m "u:username:rwx" /var/www/html
 ```
+
 
 ## Step 2: Install Apache Web Server
 ```
