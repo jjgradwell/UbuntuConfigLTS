@@ -31,7 +31,7 @@ Create a config by typing `sudo nano /etc/apache2/sites-available/domain.com.con
    CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-Enable site by typing 'sudo a2enmod domain.com.conf'
+Enable site by typing `sudo a2enmod domain.com.conf`
    
 ## Step 3: Install MariaDB Database Server
 ```
