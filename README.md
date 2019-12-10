@@ -75,11 +75,11 @@ exit;
 Optional - Update to latest stable release
 ```
 cd ~
-wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.zip
+wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.2-all-languages.zip
 sudo apt install unzip
-unzip phpMyAdmin-4.9.0.1-all-languages.zip
+unzip phpMyAdmin-4.9.2-all-languages.zip
 sudo mv /usr/share/phpmyadmin /usr/share/phpmyadmin-original
-sudo mv phpMyAdmin-4.9.0.1-all-languages /usr/share/phpmyadmin
+sudo mv phpMyAdmin-4.9.2-all-languages /usr/share/phpmyadmin
 ```
 
 Edit the vendor config file `sudo nano /usr/share/phpmyadmin/libraries/vendor_config.php`
