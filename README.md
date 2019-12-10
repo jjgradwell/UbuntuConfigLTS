@@ -20,6 +20,19 @@ sudo ufw allow http  // Configure firewall
 sudo chown www-data:www-data /var/www/html/ -R  // Change user of doc root
 ```
 
+### Create your vitual host file
+Create a config by typing `sudo nano /etc/apache2/sites-available/domain.com.conf`
+```
+<VirtualHost *:80>
+   ServerName domain.com
+   ServerAdmin admin@domain.com
+   DocumentRoot /var/www/html/domain.com
+   ErrorLog ${APACHE_LOG_DIR}/error.log
+   CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+Enable site by typing 'sudo a2enmod domain.com.conf'
+   
 ## Step 3: Install MariaDB Database Server
 ```
 sudo apt install mariadb-server mariadb-client
