@@ -51,12 +51,20 @@ sudo systemctl restart apache2
 sudo apt update
 sudo apt install phpmyadmin
 ```
+Once installed, create an admin acount
+```
+sudo mysql -u root
+create user admin@localhost identified by 'your-preferred-password';
+grant all privileges on *.* to admin@localhost with grant option;
+flush privileges;
+exit;
+```
 
 ## Step 6: Install LetsEncrypt certbot
 ```
 sudo apt install certbot python3-certbot-apache
 ```
-And then run the following command to get a certificate
+And then run the following command to get a certificate, replace `example.com` with your domain name
 ```
 sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --must-staple -d example.com --email you@example.com
 ```
