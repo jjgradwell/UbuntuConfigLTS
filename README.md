@@ -8,7 +8,8 @@ Install Ubuntu 18.04 Server from https://ubuntu.com/download/server
 ```
 sudo apt update
 sudo apt upgrade
-sudo setfacl -R -m "u:username:rwx" /var/www/html
+sudo setfacl -R -m "u:username:rwx" /var/www/html  /* Set user permissions */
+getfacl var/www/html  /* Check permissions */
 ```
 
 
