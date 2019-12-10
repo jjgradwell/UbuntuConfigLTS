@@ -148,7 +148,7 @@ Save the file, and test the config
 testparm
 ```
 
-## Create samba users and set passwords where `username` is a valid system username
+### Create samba users and set passwords where `username` is a valid system username
 ```
 sudo adduser `username`
 sudo smbpasswd -a `username`
