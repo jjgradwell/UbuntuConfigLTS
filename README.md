@@ -1,29 +1,10 @@
-# Ubuntu 18.04LTS LAMP install
+# Ubuntu 18 LAMP install
 
 From a fresh installation of Ubuntu run the following commands to update and upgrade all packages
 ```
 sudo apt update
 sudo apt upgrade -y
 sudo apt install -y curl wget zip unzip
-```
-
-## Add repositories for latest Apache/PHP/phpMyAdmin
-```
-sudo add-apt-repository ppa:ondrej/apache2
-sudo add-apt-repository ppa:ondrej/php
-sudo add-apt-repository ppa:phpmyadmin/ppa
-sudo apt install software-properties-common
-sudo apt update
-```
-
-## Install OpenSSH server, enable firewall and set permissions
-```
-sudo apt-get install openssh-server
-sudo systemctl enable ssh
-sudo systemctl start ssh
-sudo ufw allow ssh
-sudo ufw enable
-sudo ufw status
 ```
 
 ## Install Apache and enable mods
@@ -72,7 +53,7 @@ sudo mysql_secure_installation
 sudo mysql -u root -p    /* Test root password */
 ```
 
-## Install PHP7.3 and phpMyAdmin
+## Install PHP and phpMyAdmin
 ```
 sudo apt install php libapache2-mod-php php-mysql php-gettext
 sudo apt install php-fpm php-common php-cli php-json php-opcache php-readline php-mbstring php-xml php-gd php-curl php-imap php-intl php-bcmath php-zip phpmyadmin
