@@ -1,8 +1,8 @@
 # UbuntuConfig
 
-Ubuntu 19.10 - LAMP Setup
+Ubuntu LAMP Setup
 
-Install Ubuntu 19.10 Server from https://ubuntu.com/download/server
+Install Ubuntu Server from https://ubuntu.com/download/server
 
 ## Step 1: Update Software Packages
 ```
