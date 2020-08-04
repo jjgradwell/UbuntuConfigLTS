@@ -7,8 +7,6 @@ Install Ubuntu Server from https://ubuntu.com/download/server
 ## Step 1: Update Software Packages
 ```
 sudo apt update && sudo apt upgrade -y
-sudo setfacl -R -m "u:username:rwx" /var/www/html  // Set user permissions recursively for your username
-getfacl var/www/html  // Check permissions
 ```
 
 
@@ -22,6 +20,9 @@ apache2 -v  // Check version
 sudo ufw allow http  // Configure firewall for http
 sudo ufw allow https  // Configure firewall for https
 sudo chown www-data:www-data /var/www/html/ -R  // Change user of doc root
+
+sudo setfacl -R -m "u:username:rwx" /var/www/html  // Set user permissions recursively for your username
+getfacl var/www/html  // Check permissions
 ```
 
 ### Create your vitual host file
