@@ -21,7 +21,7 @@ sudo ufw allow http  // Configure firewall for http
 sudo ufw allow https  // Configure firewall for https
 sudo chown www-data:www-data /var/www/html/ -R  // Change user of doc root
 
-sudo setfacl -R -m "u:username:rwx" /var/www/html  // Set user permissions recursively for your username
+sudo setfacl -R -m "u:{$USER}:rwx" /var/www/html  // Set user permissions recursively for your username
 getfacl var/www/html  // Check permissions
 ```
 
