@@ -1,4 +1,4 @@
-# UbuntuConfig
+# Ubuntu 20.04 Config
 
 Ubuntu LAMP Setup
 
