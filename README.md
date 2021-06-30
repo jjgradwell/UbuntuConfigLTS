@@ -49,20 +49,20 @@ sudo systemctl enable mariadb  // Enable at boot
 sudo mysql_secure_installation  // Secure installation
 ```
 
-## Step 4: Install PHP7.2
+## Step 4: Install PHP7.4
 ```
-sudo apt install php7.2 libapache2-mod-php7.2 php7.2-mysql php-common php7.2-cli php7.2-common php7.2-json php7.2-opcache php7.2-readline php7.2-curl
-sudo a2enmod php7.2
+sudo apt install php7.4 libapache2-mod-php7.4 php7.4-mysql php-common php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-readline php7.4-curl
+sudo a2enmod php7.4
 sudo systemctl restart apache2
 php --version
 ```
 
 Switch to using FPM
 ```
-sudo a2dismod php7.2
-sudo apt install php7.2-fpm
+sudo a2dismod php7.4
+sudo apt install php7.4-fpm
 sudo a2enmod proxy_fcgi setenvif
-sudo a2enconf php7.2-fpm
+sudo a2enconf php7.4-fpm
 sudo systemctl restart apache2
 ```
 
