@@ -56,6 +56,15 @@ sudo systemctl enable mariadb  // Enable at boot
 sudo mysql_secure_installation  // Secure installation
 ```
 
+Once installed, create an admin acount
+```
+sudo mysql -u root
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'your-preferred-password'; // This command is case sensitive
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION; // This command is case sensitive
+FLUSH PRIVILEGES; // This command is case sensitive
+exit;
+```
+
 ## Step 4: Install PHP7.4
 ```
 sudo apt install php7.4 libapache2-mod-php7.4 php7.4-mysql php-common php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-readline php7.4-curl
@@ -80,14 +89,6 @@ sudo apt update
 sudo apt install phpmyadmin
 ```
 
-Once installed, create an admin acount
-```
-sudo mysql -u root
-create user admin@localhost identified by 'your-preferred-password';
-grant all privileges on *.* to admin@localhost with grant option;
-flush privileges;
-exit;
-```
 
 Edit the vendor config file `sudo nano /usr/share/phpmyadmin/libraries/vendor_config.php`
 
