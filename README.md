@@ -130,6 +130,8 @@ At the bottom of the file, add your shares
 Save the changes to the file, and then run the following commands to restart the server and create the actual shared directories
 
 Restart samba. type: ```/etc/init.d/smbd restart```
+
 Create the share folder: ```sudo mkdir /your-share-folder```
+
 Set the permissions: ```sudo chmod 0777 /your-share-folder```
  
