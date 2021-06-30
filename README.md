@@ -103,3 +103,33 @@ And then run the following command to get a certificate, replace `example.com` w
 ```
 sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --must-staple -d example.com,www.domain.com --email you@domain.com
 ```
+
+## Step 7: Create Network Shares (Optional)
+Open the terminal and install samba with the following command:
+```
+sudo apt-get install samba smbfs
+```
+
+Set your workgroup (if necesary) by finding the following line and change it to match your workgroup name
+```
+sudo nano /etc/samba/smb.conf
+```
+```
+# Change this to the workgroup/NT-domain name your Samba server will part of
+   workgroup = WORKGROUP
+```
+At the bottom of the file, add your shares
+```
+# MyShare
+[MyShare]
+  comment = YOUR COMMENTS
+  path = /your-share-folder
+  read only = no
+  guest ok = no
+```
+Save the changes to the file, and then run the following commands to restart the server and create the actual shared directories
+
+Restart samba. type: ```/etc/init.d/smbd restart```
+Create the share folder: ```sudo mkdir /your-share-folder```
+Set the permissions: ```sudo chmod 0777 /your-share-folder```
+ 
