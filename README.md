@@ -27,9 +27,12 @@ sudo setfacl -R -m "u:{$USER}:rwx" /var/www/html  // Set user permissions recurs
 getfacl var/www/html  // Check permissions
 ```
 
-### Create your vitual host file
+### Create your vitual host file (for each domain you are creating)
+
 Change `domain.com` to match your domain name.
+
 Create a config by typing `sudo nano /etc/apache2/sites-available/domain.com.conf`
+
 ```
 <VirtualHost *:80>
    ServerAdmin admin@domain.com
