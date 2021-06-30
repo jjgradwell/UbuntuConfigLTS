@@ -118,7 +118,7 @@ sudo nano /etc/samba/smb.conf
 # Change this to the workgroup/NT-domain name your Samba server will part of
    workgroup = WORKGROUP
 ```
-At the bottom of the file, add your shares
+At the bottom of the file, add your shares, changing ```/your-share-folder``` to the name of the directory you are going to share
 ```
 # MyShare
 [MyShare]
