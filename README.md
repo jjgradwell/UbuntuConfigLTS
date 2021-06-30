@@ -4,6 +4,8 @@ Ubuntu LAMP Setup
 
 Install Ubuntu Server from https://ubuntu.com/download/server
 
+Once the page has loaded, click on 'Option 2 - Manual Install' to access the download link
+
 ## Step 1: Update Software Packages
 ```
 sudo apt update && sudo apt upgrade -y
