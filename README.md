@@ -84,6 +84,11 @@ sudo systemctl restart apache2
 
 ## Step 5: Install phpMyAdmin
 ```
+sudo apt install phpmyadmin
+```
+
+If the above command fails, use the following commands to install
+```
 sudo add-apt-repository ppa:phpmyadmin/ppa  // Add phpmyadmin repository
 sudo apt update
 sudo apt install phpmyadmin
