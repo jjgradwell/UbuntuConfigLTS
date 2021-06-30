@@ -118,7 +118,7 @@ sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --must-staple 
 ## Step 7: Create Network Shares (Optional)
 Open the terminal and install samba with the following command:
 ```
-sudo apt-get install samba smbfs
+sudo apt-get install samba cifs-utils
 ```
 
 Set your workgroup (if necesary) by finding the following line and change it to match your workgroup name
