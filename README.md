@@ -7,12 +7,16 @@ Install Ubuntu Server from https://ubuntu.com/download/server
 Once the page has loaded, click on 'Option 2 - Manual Install' to access the download link
 
 ## Step 1: Update Software Packages
+
+Update the software repositories and perform all upgrades to install software
+
 ```
    sudo apt update && sudo apt upgrade -y
 ```
 
-
 ## Step 2: Install Apache Web Server
+
+To install a fully functional Apache server, enter each of these commands on a separate line in the terminal
 ```
    sudo apt install -y apache2 apache2-utils
    systemctl status apache2  // Check status
@@ -45,6 +49,7 @@ Create a config by typing `sudo nano /etc/apache2/sites-available/domain.com.con
       CustomLog ${APACHE_LOG_DIR}/access.log combined
    </VirtualHost>
 ```
+
 Enable site by typing `sudo a2ensite domain.com`
    
 ## Step 3: Install MariaDB Database Server
@@ -57,6 +62,7 @@ Enable site by typing `sudo a2ensite domain.com`
 ```
 
 Once installed, create an admin acount
+
 ```
    sudo mysql -u root
    CREATE USER 'admin'@'localhost' IDENTIFIED BY 'your-preferred-password'; // This command is case sensitive
@@ -66,6 +72,7 @@ Once installed, create an admin acount
 ```
 
 ## Step 4: Install PHP7.4
+
 ```
    sudo apt install php7.4 libapache2-mod-php7.4 php7.4-mysql php-common php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-readline php7.4-curl
    sudo a2enmod php7.4
@@ -74,6 +81,7 @@ Once installed, create an admin acount
 ```
 
 Switch to using FPM
+
 ```
    sudo a2dismod php7.4
    sudo apt install php7.4-fpm
@@ -83,6 +91,7 @@ Switch to using FPM
 ```
 
 ## Step 5: Install phpMyAdmin
+
 ```
    sudo apt install phpmyadmin
 ```
@@ -103,27 +112,34 @@ Save and close the file. Then create the tmp folder to store cache files. `sudo 
 Change user ownership and group ownership to www-data. `sudo chown www-data:www-data /usr/share/phpmyadmin/tmp`
 
 To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the apache.conf file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
+   
 ```
    Header unset Content-Security-Policy
    Header always set Content-Security-Policy "default-src 'unsafe-inline' 'unsafe-eval';
 ```
 
 ## Step 6: Install LetsEncrypt certbot
+   
 ```
    sudo apt install certbot python3-certbot-apache
 ```
+   
 And then run the following command to get a certificate, replace `example.com` with your domain name
+   
 ```
      sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --must-staple -d example.com,www.domain.com --email you@domain.com
 ```
 
 ## Step 7: Create Network Shares (Optional)
+   
 Open the terminal and install samba with the following command:
+   
 ```
   sudo apt-get install samba cifs-utils
 ```
 
 Set your workgroup (if necesary) by finding the following line and change it to match your workgroup name
+   
 ```
    sudo nano /etc/samba/smb.conf
    # Change this to the workgroup/NT-domain name your Samba server will part of
@@ -131,6 +147,7 @@ Set your workgroup (if necesary) by finding the following line and change it to 
 ```
    
 At the bottom of the file, add your shares, changing ```/your-share-folder``` to the name of the directory you are going to share
+   
 ```
 # MyShare
 [MyShare]
@@ -141,15 +158,16 @@ At the bottom of the file, add your shares, changing ```/your-share-folder``` to
    guest ok = no
    create mask = 0755
 ```
-Save the changes to the file, and then run the following commands to restart the server and create the actual shared directories
 
 Add the users that are allowed access to the system, replacing {$user} with the actual user name
+   
 ```
    sudo useradd {$user}
    sudo passwd {$user}
 ```
 
-Now create the samba accounts
+Now create the samba accounts, supplying a password for each account you add when prompted
+   
 ```
    sudo smbpasswd -a {user}
 ```
@@ -159,6 +177,7 @@ Create the share folder: ```sudo mkdir /your-share-folder```
 Set the permissions: ```sudo chmod 0775 /your-share-folder```
 
 And then restart samba to use your changes
+   
 ```
    sudo service smbd restart
 ```
