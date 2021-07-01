@@ -105,7 +105,7 @@ Change user ownership and group ownership to www-data. `sudo chown www-data:www-
 To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the apache.conf file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
 ```
    Header unset Content-Security-Policy
-   Header always set Content-Security-Policy "default-src 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline>
+   Header always set Content-Security-Policy "default-src 'unsafe-inline' 'unsafe-eval';
 ```
 
 ## Step 6: Install LetsEncrypt certbot
