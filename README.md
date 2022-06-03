@@ -16,7 +16,8 @@ Update the software repositories and perform all upgrades to install software
 
 ## Step 2: Install Apache Web Server
 
-To install a fully functional Apache server, enter each of these commands on a separate line in the terminal
+To install a fully functional Apache server, enter each of these commands on a separate line in the terminal, change {$USER} to your username
+
 ```
    sudo apt install -y apache2 apache2-utils
    systemctl status apache2  // Check status
@@ -30,7 +31,7 @@ To install a fully functional Apache server, enter each of these commands on a s
    sudo apt install acl // Install the file access control list package
 
    sudo setfacl -R -m "u:{$USER}:rwx" /var/www/html  // Set user permissions recursively for your username
-   getfacl var/www/html  // Check permissions
+   getfacl /var/www/html  // Check permissions
 ```
 
 ### Create your vitual host file (for each domain you are creating)
