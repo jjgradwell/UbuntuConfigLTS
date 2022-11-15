@@ -72,11 +72,11 @@ Once installed, create an admin acount
    exit;
 ```
 
-## Step 4: Install PHP7.4
+## Step 4: Install PHP
 
 ```
-   sudo apt install php7.4 libapache2-mod-php7.4 php7.4-mysql php-common php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-readline php7.4-curl
-   sudo a2enmod php7.4
+   sudo apt install php
+   sudo a2enmod php8.1
    sudo systemctl restart apache2
    php --version
 ```
@@ -84,10 +84,10 @@ Once installed, create an admin acount
 Switch to using FPM
 
 ```
-   sudo a2dismod php7.4
-   sudo apt install php7.4-fpm
+   sudo a2dismod php8.1
+   sudo apt install php8.1-fpm
    sudo a2enmod proxy_fcgi setenvif
-   sudo a2enconf php7.4-fpm
+   sudo a2enconf php8.1-fpm
    sudo systemctl restart apache2
 ```
 
