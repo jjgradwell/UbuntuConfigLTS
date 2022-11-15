@@ -1,4 +1,4 @@
-# Ubuntu 20.04 Config
+# Ubuntu 22.04 Config
 
 Ubuntu LAMP Setup
 
@@ -115,8 +115,10 @@ Change user ownership and group ownership to www-data. `sudo chown www-data:www-
 To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the apache.conf file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
    
 ```
+<IfModule mod_security.c>
    Header unset Content-Security-Policy
    Header always set Content-Security-Policy "default-src 'unsafe-inline' 'unsafe-eval';
+</IfModule>
 ```
 
 ## Step 6: Install LetsEncrypt certbot
