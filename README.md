@@ -151,7 +151,7 @@ Set your workgroup (if necesary) by finding the following line and change it to 
    workgroup = WORKGROUP
 ```
    
-At the bottom of the file, add your shares, changing ```/your-share-folder``` to the name of the directory you are going to share
+At the bottom of the file, add your shares, changing ```/your-share-folder``` to the name of the directory you are going to share, changing {$user} to the user accounts that have write premissions
    
 ```
 # MyShare
