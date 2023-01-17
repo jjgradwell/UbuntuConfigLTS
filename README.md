@@ -1,4 +1,4 @@
-# Ubuntu 22.04 Config
+# Ubuntu Server 22.04 LTS Config
 
 Ubuntu LAMP Setup
 
