@@ -82,7 +82,7 @@ Once installed, create an admin acount
 ## Step 4: Install PHP
 
 ```
-   sudo apt install php
+   sudo apt install php php-json
    sudo a2enmod php8.3
    sudo systemctl restart apache2
    php --version
