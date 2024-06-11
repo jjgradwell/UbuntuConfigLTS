@@ -95,6 +95,9 @@ Switch to using FPM
    sudo apt install php8.3-fpm
    sudo a2enmod proxy_fcgi setenvif
    sudo a2enconf php8.3-fpm
+   sudo a2dismod php8.3
+   sudo a2dismod mpm_prefork
+   sudo a2enmod mpm_event
    sudo systemctl restart apache2
 ```
 
