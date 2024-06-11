@@ -168,9 +168,11 @@ At the bottom of the file, add your shares, changing ```/your-share-folder``` to
    comment = YOUR COMMENTS
    path = /your-share-folder
    read only = no
-   writeable = {$user}
-   guest ok = no
+   writeable = Yes
    create mask = 0755
+   directory mask = 0755
+   write list = {users} // Comma separated list
+   valid users = {users} // Comma separated list
 ```
 
 Add the users that are allowed access to the system, replacing {$user} with the actual user name
