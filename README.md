@@ -168,7 +168,7 @@ At the bottom of the file, add your shares, changing ```/your-share-folder``` to
    comment = YOUR COMMENTS
    path = /your-share-folder
    read only = no
-   writable = {$user}
+   writeable = {$user}
    guest ok = no
    create mask = 0755
 ```
