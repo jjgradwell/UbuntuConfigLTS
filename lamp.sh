@@ -15,7 +15,6 @@ systemctl restart apache2
 a2dismod php8.3
 a2enmod proxy_fcgi setenvif
 a2enconf php8.3-fpm
-a2dismod php8.3
 a2dismod mpm_prefork
 a2enmod mpm_event
 systemctl restart apache2
