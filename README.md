@@ -77,7 +77,7 @@ Once installed, create an admin acount
 
 ```
    sudo apt install php
-   sudo a2enmod php8.1
+   sudo a2enmod php8.3
    sudo systemctl restart apache2
    php --version
 ```
@@ -85,10 +85,10 @@ Once installed, create an admin acount
 Switch to using FPM
 
 ```
-   sudo a2dismod php8.1
-   sudo apt install php8.1-fpm
+   sudo a2dismod php8.3
+   sudo apt install php8.3-fpm
    sudo a2enmod proxy_fcgi setenvif
-   sudo a2enconf php8.1-fpm
+   sudo a2enconf php8.3-fpm
    sudo systemctl restart apache2
 ```
 
