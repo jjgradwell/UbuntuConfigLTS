@@ -21,7 +21,7 @@ sudo a2enmod http2 brotli
 systemctl status apache2  // Check status
 sudo systemctl enable apache2  // Enable at boot
 apache2 -v  // Check version
-sudo chown www-data:www-data /var/www/html/ -R  // Update permissions
+sudo usermod -a -G www-data {user}
 ```
 
 Setup Ubuntu Firewall
@@ -35,7 +35,6 @@ Configure File Access Control List
 ```
 sudo apt install acl // Install the file access control list package
 sudo setfacl -Rdm "g:www-data:rwx" /var/www/html
-sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
 getfacl /var/www/html  // Check permissions
 ```
    
@@ -125,6 +124,7 @@ Open the terminal and install samba with the following command:
    
 ```
 sudo apt-get install samba cifs-utils
+sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
 ```
 
 Set your workgroup (if necesary) by finding the following line and change it to match your workgroup name
