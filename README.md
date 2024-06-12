@@ -27,8 +27,8 @@ sudo chown www-data:www-data /var/www/html/ -R  // Update permissions
 Setup Ubuntu Firewall
 ```
    sudo ufw allow "Apache Full"  // Configure firewall for http
-   sudo ufw allow from 192.168.0.0/16 to any port 22 // Configure SSH to local network
-   sudo ufw allow from 192.168.0.0/16 to any app Samba // Allow Samba Shares
+   sudo ufw allow from 192.168.0.0/23 to any port 22 // Configure SSH to local network
+   sudo ufw allow from 192.168.0.0/23 to any app Samba // Allow Samba Shares
 ```
 
 Configure File Access Control List
