@@ -15,7 +15,7 @@ sudo apt update && sudo apt upgrade -y
 To install a fully functional Apache server, enter each of these commands on a separate line in the terminal, change {user} to your username
 
 ```
-sudo apt install apache2 apache2-utils -y
+sudo apt install apache2 apache2-utils libapache2-mod-security2 -y
 sudo a2enmod http2 brotli
 
 systemctl status apache2  // Check status
