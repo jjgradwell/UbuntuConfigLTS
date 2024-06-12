@@ -140,11 +140,6 @@ Install Cerbot by using the following command
    sudo apt install certbot python3-certbot-apache
 ```
 
-After installation, run the following command to generate a strong Diffe-Helman exchange key
-```
-   sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
-```
-   
 And then run the following command to get a certificate, replace `example.com` with your domain name
    
 ```
