@@ -28,13 +28,12 @@ Setup Ubuntu Firewall
 ```
    sudo ufw allow "Apache Full"  // Configure firewall for http
    sudo ufw allow from 192.168.0.0/23 to any port 22 // Configure SSH to local network
-   sudo ufw allow from 192.168.0.0/23 to any app Samba // Allow Samba Shares
 ```
 
 Configure File Access Control List
 ```
 sudo apt install acl // Install the file access control list package
-sudo setfacl -Rdm "g:www-data:rwx" /var/www/html
+sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
 getfacl /var/www/html  // Check permissions
 ```
    
