@@ -12,7 +12,7 @@ sudo apt update && sudo apt upgrade -y
 
 ## Install Apache Web Server
 
-To install a fully functional Apache server, enter each of these commands on a separate line in the terminal, change {$USER} to your username
+To install a fully functional Apache server, enter each of these commands on a separate line in the terminal, change {user} to your username
 
 ```
 sudo apt install apache2 apache2-utils mod_security -y
@@ -34,8 +34,8 @@ Setup Ubuntu Firewall
 Configure File Access Control List
 ```
 sudo apt install acl // Install the file access control list package
-sudo setfacl -Rdm "u:www-data:rwx" /var/www/html  // Set user permissions recursively for apache
-sudo setfacl -Rdm "u:{$USER}:rwx" /var/www/html  // Set user permissions recursively for your username
+sudo setfacl -Rdm "g:www-data:rwx" /var/www/html
+sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
 getfacl /var/www/html  // Check permissions
 ```
    
