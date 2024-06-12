@@ -97,29 +97,14 @@ Enable site by typing `sudo a2ensite domain.com`
 sudo apt install phpmyadmin
 ```
 
-### If the above command fails, use the following commands to install
-```
-sudo add-apt-repository ppa:phpmyadmin/ppa  // Add phpmyadmin repository
-sudo apt update
-sudo apt install phpmyadmin
-```
-
-Edit the vendor config file `sudo nano /usr/share/phpmyadmin/libraries/vendor_config.php`
-
-Find the following line `define('CONFIG_DIR', '');` and change it to `define('CONFIG_DIR', '/etc/phpmyadmin/');`
-
-Save and close the file. Then create the tmp folder to store cache files. `sudo mkdir /usr/share/phpmyadmin/tmp`
-
-Change user ownership and group ownership to www-data. `sudo chown www-data:www-data /usr/share/phpmyadmin/tmp`
-
 To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the apache.conf file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
    
 ```
-   <IfModule mod_headers.c>
+<IfModule mod_headers.c>
    Header always set Strict-Transport-Security "max-age=31536000"
    Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline'; upgrade-insecure-requests; block-all-mixed-content;"
    Header always set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-   </IfModule>
+</IfModule>
 ```
 
 ## Install LetsEncrypt Certbot
