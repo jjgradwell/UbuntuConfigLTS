@@ -19,7 +19,7 @@ Update the software repositories and perform all upgrades to install software
 To install a fully functional Apache server, enter each of these commands on a separate line in the terminal, change {$USER} to your username
 
 ```
-   sudo apt install apache2 apache2-utils libapache2-mod-security2 -y
+   sudo apt install apache2 apache2-utils -y
    systemctl status apache2  // Check status
    sudo systemctl enable apache2  // Enable at boot
    apache2 -v  // Check version
@@ -27,11 +27,10 @@ To install a fully functional Apache server, enter each of these commands on a s
    // Enable mods
    sudo a2enmod http2
    sudo a2enmod brotli
-   sudo a2enmod security2
 
    // Setup Ubuntu Firewall
-   sudo ufw allow http  // Configure firewall for http
-   sudo ufw allow https  // Configure firewall for https
+   sudo ufw allow "Apache Full"  // Configure firewall for http
+   sudo ufw allow "Apache Full"  // Configure firewall for https
    sudo ufw allow ssh from {ip list} proto tcp  // Configure firewall for ssh access from select ips
    sudo chown www-data:www-data /var/www/html/ -R  // Change user of doc root
 
