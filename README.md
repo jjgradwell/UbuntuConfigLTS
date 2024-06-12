@@ -157,6 +157,14 @@ sudo passwd {user}
 sudo smbpasswd -a {user}
 ```
 
+After creating a samba password for your user, you need to add them to the `/etc/samba/smbusers` file
+
+```
+sudo nano /etc/samba/smbusers
+```
+
+And add users using the following format `{user} = "{user}"`
+
 Create the share folder: `sudo mkdir /your-share-folder`
 
 Set the permissions: `sudo chmod 0775 /your-share-folder`
