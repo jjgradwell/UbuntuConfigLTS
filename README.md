@@ -37,7 +37,7 @@ To install a fully functional Apache server, enter each of these commands on a s
 
    // Configure File Access List
    sudo apt install acl // Install the file access control list package
-   sudo setfacl -R -m "u:{$USER}:rwx" /var/www/html  // Set user permissions recursively for your username
+   sudo setfacl -Rdm "u:{$USER}:rwx" /var/www/html  // Set user permissions recursively for your username
    getfacl /var/www/html  // Check permissions
 ```
 
