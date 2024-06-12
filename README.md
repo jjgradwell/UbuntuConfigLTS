@@ -30,8 +30,9 @@ To install a fully functional Apache server, enter each of these commands on a s
 
    // Setup Ubuntu Firewall
    sudo ufw allow "Apache Full"  // Configure firewall for http
-   sudo ufw allow "Apache Full"  // Configure firewall for https
-   sudo ufw allow ssh from {ip list} proto tcp  // Configure firewall for ssh access from select ips
+   sudo ufw allow from 192.168.0.0/16 to any port 22 // Configure SSH to local network
+
+   // Change ownership of web-root
    sudo chown www-data:www-data /var/www/html/ -R  // Change user of doc root
 
    // Configure File Access List
