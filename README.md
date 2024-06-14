@@ -32,10 +32,10 @@ Setup Ubuntu Firewall
 
 If you are going to use Samba on your server, then you need to allow these ports access
 ```
-sudo ufw allow proto udp to any port 137 from 192.168.0.0/23
-sudo ufw allow proto udp to any port 138 from 192.168.0.0/23
-sudo ufw allow proto tcp to any port 139 from 192.168.0.0/23
-sudo ufw allow proto tcp to any port 445 from 192.168.0.0/23
+sudo ufw allow proto from 192.168.0.0/23 to any port 137 proto udp
+sudo ufw allow proto from 192.168.0.0/23 to any port 138 proto udp
+sudo ufw allow proto from 192.168.0.0/23 to any port 139 proto tcp
+sudo ufw allow proto from 192.168.0.0/23 to any port 445 proto tcp
 ```
 
 Configure File Access Control List
