@@ -25,12 +25,14 @@ sudo usermod -a -G www-data {user}
 ```
 
 Setup Ubuntu Firewall
+
 ```
    sudo ufw allow "Apache Full"  // Configure firewall for http
    sudo ufw allow from 192.168.0.0/23 to any port 22 // Configure SSH to local network
 ```
 
-If you are going to use Samba on your server, then you need to allow these ports access
+If you are going to use Samba on your server, then you need to allow these ports access, for machines on local network to access them
+
 ```
 sudo ufw allow proto from 192.168.0.0/23 to any port 137 proto udp
 sudo ufw allow proto from 192.168.0.0/23 to any port 138 proto udp
@@ -39,6 +41,7 @@ sudo ufw allow proto from 192.168.0.0/23 to any port 445 proto tcp
 ```
 
 Configure File Access Control List
+
 ```
 sudo apt install acl // Install the file access control list package
 sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
@@ -47,6 +50,7 @@ getfacl /var/www/html  // Check permissions
    
 
 ## Install MariaDB Database Server
+
 ```
 sudo apt install mariadb-server
 mariadb --version  // Check version
@@ -134,7 +138,7 @@ sudo apt-get install samba cifs-utils
 sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
 ```
 
-Set your workgroup (if necesary) by finding the following line and change it to match your workgroup name
+Set your workgroup (if necesary) by finding the following line and change it to match your workgroup name (WINDOWS)
    
 ```
 sudo nano /etc/samba/smb.conf
