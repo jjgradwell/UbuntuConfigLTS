@@ -124,7 +124,6 @@ Open the terminal and install samba with the following command:
    
 ```
 sudo apt-get install samba cifs-utils
-sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
 ```
 
 Set your workgroup (if necesary) by finding the following line and change it to match your workgroup name (WINDOWS)
