@@ -156,6 +156,10 @@ At the bottom of the file, add your shares, changing `/your-share-folder` to the
    directory mask = 0755
    write list = {users} // Comma separated list of samba accounts
    valid users = {users} // Comma separated list of samba accounts
+   follow symlinks = yes
+   wide links = yes
+   veto files = /._*/.DS_Store/.AppleDB/.AppleDouble/.AppleDesktop/:2eDS_Store/Network Trash Folder/Temporary Items/TheVolumeSettingsFold>
+   delete veto files = yes
 ```
 
 Add the users that are allowed access to the system, replacing {user} with the actual user name, and create a Samba password for the account
