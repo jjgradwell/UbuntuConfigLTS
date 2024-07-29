@@ -14,7 +14,7 @@ To install a fully functional Apache server, enter each of these commands on a s
 
 ```
 sudo apt install apache2 apache2-utils libapache2-mod-security2 -y
-sudo a2enmod http2 brotli
+sudo a2enmod http2 brotli rewrite headers
 
 systemctl status apache2  // Check status
 sudo systemctl enable apache2  // Enable at boot
@@ -25,6 +25,7 @@ sudo usermod -a -G www-data {user}
 Setup Ubuntu Firewall
 
 ```
+   sudo systemctl enable ufw
    sudo ufw allow "Apache Full"  // Configure firewall for http
    sudo ufw allow from 192.168.0.0/23 to any port 22 // Configure SSH to local network
 ```
@@ -70,7 +71,7 @@ sudo systemctl restart apache2
 php --version
 ```
 
-## Create your vitual host files (for each domain you are creating)
+## Create your virtual host files (for each domain you are creating)
 
 Change `domain.com` to match your domain name.
 
@@ -99,11 +100,19 @@ sudo apt install phpmyadmin
 To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the apache.conf file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
    
 ```
-<IfModule mod_headers.c>
-   Header unset Content-Security-Policy
-   Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline';"
-   Header always set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-</IfModule>
+    AllowOverride all
+    Require ip 127.0.0.1 192.168.0.0/23 68.147.144.177
+    Require all granted
+
+    <IfModule mod_security.c>
+        SecRuleEngine Off
+    </IfModule>
+
+   <IfModule mod_headers.c>
+      Header unset Content-Security-Policy
+      Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline';"
+      Header always set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+   </IfModule>
 ```
 
 ## Install LetsEncrypt Certbot
@@ -173,15 +182,7 @@ And then restart samba to use your changes
    
 ```
 sudo systemctl restart smbd
-```
-
-# If you are going to use Samba on your server, then you need to allow these ports access, for machines on local network to access them
-
-```
-sudo ufw allow proto from 192.168.0.0/23 to any port 137 proto udp
-sudo ufw allow proto from 192.168.0.0/23 to any port 138 proto udp
-sudo ufw allow proto from 192.168.0.0/23 to any port 139 proto tcp
-sudo ufw allow proto from 192.168.0.0/23 to any port 445 proto tcp
+sudo ufw allow "Samba"
 ```
 
 
