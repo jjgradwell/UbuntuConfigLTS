@@ -29,15 +29,6 @@ Setup Ubuntu Firewall
    sudo ufw allow from 192.168.0.0/23 to any port 22 // Configure SSH to local network
 ```
 
-If you are going to use Samba on your server, then you need to allow these ports access, for machines on local network to access them
-
-```
-sudo ufw allow proto from 192.168.0.0/23 to any port 137 proto udp
-sudo ufw allow proto from 192.168.0.0/23 to any port 138 proto udp
-sudo ufw allow proto from 192.168.0.0/23 to any port 139 proto tcp
-sudo ufw allow proto from 192.168.0.0/23 to any port 445 proto tcp
-```
-
 Configure File Access Control List
 
 ```
@@ -184,4 +175,14 @@ And then restart samba to use your changes
 ```
 sudo systemctl restart smbd
 ```
-   
+
+# If you are going to use Samba on your server, then you need to allow these ports access, for machines on local network to access them
+
+```
+sudo ufw allow proto from 192.168.0.0/23 to any port 137 proto udp
+sudo ufw allow proto from 192.168.0.0/23 to any port 138 proto udp
+sudo ufw allow proto from 192.168.0.0/23 to any port 139 proto tcp
+sudo ufw allow proto from 192.168.0.0/23 to any port 445 proto tcp
+```
+
+
