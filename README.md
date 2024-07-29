@@ -1,4 +1,4 @@
-# Ubuntu Server 22.04 LTS Config
+# Ubuntu Server LTS Config
 
 Download Ubuntu Server from https://ubuntu.com/download/server
 
