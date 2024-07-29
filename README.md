@@ -2,8 +2,6 @@
 
 Download Ubuntu Server from https://ubuntu.com/download/server
 
-Once the page has loaded, click on 'Option 2 - Manual Install' to access the download link
-
 ## Update Software Packages
 
 ```
