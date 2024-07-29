@@ -100,8 +100,8 @@ To ensure that phpmyadmin works on systems with a strong content-security-policy
    
 ```
 <IfModule mod_headers.c>
-   Header always set Strict-Transport-Security "max-age=31536000"
-   Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline'; upgrade-insecure-requests; block-all-mixed-content;"
+   Header unset Content-Security-Policy
+   Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline';"
    Header always set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
 </IfModule>
 ```
