@@ -101,7 +101,7 @@ To ensure that phpmyadmin works on systems with a strong content-security-policy
    
 ```
     AllowOverride all
-    Require ip 127.0.0.1 192.168.0.0/23 68.147.144.177
+    Require ip 127.0.0.1 ::1 192.168.0.0/23
     Require all granted
 
     <IfModule mod_security.c>
