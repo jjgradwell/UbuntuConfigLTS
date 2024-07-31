@@ -165,8 +165,8 @@ At the bottom of the file, add your shares, changing `/your-share-folder` to the
 Add the users that are allowed access to the system, replacing {user} with the actual user name, and create a Samba password for the account
    
 ```
-sudo useradd {user}
-sudo passwd {user}
+sudo useradd {user} // If new user
+sudo passwd {user} // If new user
 sudo smbpasswd -a {user}
 ```
 
@@ -185,8 +185,8 @@ Set the permissions: `sudo chmod 0775 /your-share-folder`
 And then restart samba to use your changes
    
 ```
+sudo ufw allow from 192.168.0.0/23 to any app Samba   // Limit shares to local network
 sudo systemctl restart smbd
-sudo ufw allow "Samba"
 ```
 
 
