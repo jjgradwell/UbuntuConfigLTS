@@ -27,7 +27,6 @@ Setup Ubuntu Firewall
 ```
    sudo systemctl enable ufw
    sudo ufw allow "Apache Full"  // Configure firewall for http
-   sudo ufw allow from 192.168.0.0/23 to any port 22 // Configure SSH to local network
 ```
 
 Configure File Access Control List
