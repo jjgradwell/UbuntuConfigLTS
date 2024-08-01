@@ -2,6 +2,11 @@
 
 Download Ubuntu Server from https://ubuntu.com/download/server
 
+if setting up mod_evasive, to ensure all servies can work, you need to edit the /etc/apache2/mods-available/evasive.conf file and add the following to the configuration.
+```
+DOSWhitelist <local-net> <public-ip>
+````
+
 ## Update Software Packages
 
 ```
