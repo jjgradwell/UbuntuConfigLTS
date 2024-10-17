@@ -2,7 +2,7 @@
 
 Download Ubuntu Server from https://ubuntu.com/download/server
 
-if setting up mod_evasive, to ensure all servies can work, you need to edit the /etc/apache2/mods-available/evasive.conf file and add the following to the configuration.
+if setting up mod_evasive, to ensure all services will work, you need to edit the /etc/apache2/mods-available/evasive.conf file and add the following to the configuration.
 ```
 DOSWhitelist <local-net> <public-ip>
 ````
@@ -66,7 +66,7 @@ exit;
 ## Install PHP and switch to FPM
 
 ```
-sudo apt install php8.3 php8.3-fpm
+sudo apt install php8.3 php8.3-fpm php8.3-yaml
 sudo a2dismod php8.3 mpm_prefork
 sudo a2enmod proxy_fcgi setenvif
 sudo a2enconf php8.3-fpm
