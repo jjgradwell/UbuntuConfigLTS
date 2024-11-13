@@ -1,6 +1,7 @@
 # Ubuntu Server LTS Config
 
-Download Ubuntu Server from https://ubuntu.com/download/server
+Download Ubuntu Server from https://ubuntu.com/download/server and write the image to a usb drive using BelenaEtcher, and then install
+
 
 if setting up mod_evasive, to ensure all services will work, you need to edit the /etc/apache2/mods-available/evasive.conf file and add the following to the configuration.
 ```
