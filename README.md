@@ -5,7 +5,7 @@ Download Ubuntu Server from https://ubuntu.com/download/server and write the ima
 
 if setting up mod_evasive, to ensure all services will work, you need to edit the /etc/apache2/mods-available/evasive.conf file and add the following to the configuration.
 ```
-DOSWhitelist <local-net> <public-ip>
+DOSWhitelist 127.0.0.1 ::1 <public-ip>
 ````
 
 ## Update Software Packages
