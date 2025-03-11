@@ -120,6 +120,15 @@ To ensure that phpmyadmin works on systems with a strong content-security-policy
    </IfModule>
 ```
 
+Add the following lines to the `/etc/apache2/apache2.conf` file, as this will prevent the 403/404 errors from appearing
+```
+<Directory /usr/share/phpmyadmin>
+    Options Indexes FollowSymLinks MultiViews
+    DirectoryIndex index.php
+    AllowOverride all
+    Require all granted
+</Directory>
+```
 ## Install LetsEncrypt Certbot
 
 ```
