@@ -1,6 +1,6 @@
 # Ubuntu Server LTS Config
 
-Download Ubuntu Server from https://ubuntu.com/download/server and write the image to a usb drive using BelenaEtcher, and then install
+Download Ubuntu Server from https://ubuntu.com/download/server and write the image to a usb drive using BelenaEtcher, and then install by booting the system with the usb drive plugged in.
 
 ## Update Software Packages
 
