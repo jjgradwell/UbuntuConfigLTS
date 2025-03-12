@@ -3,9 +3,12 @@
 Download Ubuntu Server from https://ubuntu.com/download/server and write the image to a usb drive using BelenaEtcher, and then install
 
 
-if setting up mod_evasive, to ensure all services will work, you need to edit the /etc/apache2/mods-available/evasive.conf file and add the following to the configuration.
+if setting up mod_evasive, to ensure all services will work, you need to edit the /etc/apache2/mods-available/evasive.conf file and modify the following to match your IP addresses.
 ```
-DOSWhitelist 127.0.0.1 ::1 <public-ip>
+DOSWhitelist 127.0.0.1
+DOWWhitelist ::1
+DOSWhitelist 192.168.*
+DOSWhitelist <public-ip>
 ````
 
 ## Update Software Packages
