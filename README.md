@@ -18,7 +18,7 @@ sudo a2enmod http2 brotli rewrite headers evasive
 systemctl status apache2  // Check status
 sudo systemctl enable apache2  // Enable at boot
 apache2 -v  // Check version
-sudo usermod -a -G www-data **{user}**
+sudo usermod -a -G www-data {user}
 ```
 
 ### Fixing mod_evasive errors (ie. 403 errors for phpMyAdmin)
@@ -33,15 +33,14 @@ DOSWhitelist 192.168.0.*  # This will white list all IP address for internal net
 DOSWhitelist <public-ip>
 ````
 
-
-Setup Ubuntu Firewall
+## Setup Ubuntu Firewall
 
 ```
    sudo systemctl enable ufw
    sudo ufw allow "Apache Full"  // Configure firewall for http
 ```
 
-Configure File Access Control List
+## Configure File Access Control List
 
 ```
 sudo apt install acl // Install the file access control list package
@@ -83,6 +82,8 @@ php --version
 
 ## Create your virtual host files (for each domain you are creating)
 
+Backup the original file by typing `sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bak`
+
 Change `domain.com` to match your domain name.
 
 Create a config by typing `sudo nano /etc/apache2/sites-available/domain.com.conf`
@@ -107,7 +108,7 @@ Enable site by typing `sudo a2ensite domain.com`
 sudo apt install phpmyadmin
 ```
 
-To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the apache.conf file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
+To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the `/etc/phpmyadmin/apache.conf` file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
    
 ```
     AllowOverride all
@@ -126,14 +127,19 @@ To ensure that phpmyadmin works on systems with a strong content-security-policy
 ```
 
 Add the following lines to the `/etc/apache2/apache2.conf` file, as this will prevent the 403/404 errors from appearing
+
 ```
 <Directory /usr/share/phpmyadmin>
-    Options Indexes FollowSymLinks MultiViews
-    DirectoryIndex index.php
-    AllowOverride all
-    Require all granted
+   Options Indexes FollowSymLinks MultiViews
+   DirectoryIndex index.php
+   AllowOverride all
+   Require all granted
+   <IfModule security2_module>
+      SecRuleEngine Off
+   </IfModule>
 </Directory>
 ```
+
 ## Install LetsEncrypt Certbot
 
 ```
@@ -143,7 +149,7 @@ sudo apt install certbot python3-certbot-apache
 And then run the following command to get a certificate, replace `-d example.ca` with your domain name, and `--email email@example.com` to your email address
    
 ```
-sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp --must-staple -d example.com --email you@domain.com
+sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp -d example.com --email you@domain.com
 ```
 
 ## Create Network Shares (Optional)
@@ -177,15 +183,15 @@ At the bottom of the file, add your shares, changing `/your-share-folder` to the
    valid users = {users} // Comma separated list of samba accounts
    follow symlinks = yes
    wide links = yes
-   veto files = /._*/.DS_Store/.AppleDB/.AppleDouble/.AppleDesktop/:2eDS_Store/Network Trash Folder/Temporary Items/TheVolumeSettingsFold>
+   veto files = /._*/.DS_Store/.AppleDB/.AppleDouble/.AppleDesktop/:2eDS_Store/Network Trash Folder/Temporary Items/TheVolumeSettingsFolder/.@__thumb/.@__desc/
    delete veto files = yes
 ```
 
 Add the users that are allowed access to the system, replacing {user} with the actual user name, and create a Samba password for the account
    
 ```
-sudo useradd {user} // If new user
-sudo passwd {user} // If new user
+sudo useradd {user} // If you need to add a new user to the server
+sudo passwd {user} // If new user, set the users password
 sudo smbpasswd -a {user}
 ```
 
