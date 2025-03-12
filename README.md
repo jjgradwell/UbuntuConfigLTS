@@ -2,14 +2,6 @@
 
 Download Ubuntu Server from https://ubuntu.com/download/server and write the image to a usb drive using BelenaEtcher, and then install
 
-
-if setting up mod_evasive, to ensure all services will work, you need to edit the `/etc/apache2/mods-available/evasive.conf` file and modify the following to match your private/public IP addresses.
-```
-DOSWhitelist 127.0.0.1
-DOSWhitelist 192.168.0.*
-DOSWhitelist <public-ip>
-````
-
 ## Update Software Packages
 
 ```
@@ -29,6 +21,16 @@ sudo systemctl enable apache2  // Enable at boot
 apache2 -v  // Check version
 sudo usermod -a -G www-data {user}
 ```
+
+### Fixing mod_evasive errors (ie. 403 errors for phpMyAdmin
+If using mod_evasive you need to edit the `/etc/apache2/mods-available/evasive.conf` file and modify the following to match your private/public IP addresses. Also uncomment each line in the file by removing the # symbol from the begining.
+
+```
+DOSWhitelist 127.0.0.1
+DOSWhitelist 192.168.0.*
+DOSWhitelist <public-ip>
+````
+
 
 Setup Ubuntu Firewall
 
