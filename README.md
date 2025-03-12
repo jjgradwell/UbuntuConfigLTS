@@ -22,8 +22,11 @@ apache2 -v  // Check version
 sudo usermod -a -G www-data {user}
 ```
 
-### Fixing mod_evasive errors (ie. 403 errors for phpMyAdmin
-If using mod_evasive you need to edit the `/etc/apache2/mods-available/evasive.conf` file and modify the following to match your private/public IP addresses. Also uncomment each line in the file by removing the # symbol from the begining.
+### Fixing mod_evasive errors (ie. 403 errors for phpMyAdmin)
+
+If you are constantly getting 403 errors when using phpmyadmin, follow these steps to eliminate the errors.
+
+You need to edit the `/etc/apache2/mods-available/evasive.conf` file and modify the following to match your private/public IP addresses.  Uncomment each line in the file by removing the # symbol from the begining.  **The DOSWhitelist lines must be on their own line for each IP to white list.**
 
 ```
 DOSWhitelist 127.0.0.1
