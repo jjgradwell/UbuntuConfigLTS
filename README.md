@@ -44,7 +44,7 @@ DOSWhitelist <public-ip>
 
 ```
 sudo apt install acl // Install the file access control list package
-sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
+sudo setfacl -Rm "u:{user}:rwx,g:{user}:rwx" /var/www/html // To allow your user read/write/execute permissions
 getfacl /var/www/html  // Check permissions
 ```
 
@@ -72,7 +72,7 @@ exit;
 
 ```
 sudo apt install php8.3 php8.3-fpm php8.3-yaml
-sudo a2dismod php8.3 mpm_prefork
+sudo a2dismod mpm_prefork
 sudo a2enmod proxy_fcgi setenvif
 sudo a2enconf php8.3-fpm
 sudo a2enmod mpm_event
@@ -126,7 +126,7 @@ To ensure that phpmyadmin works on systems with a strong content-security-policy
    </IfModule>
 ```
 
-Add the following lines to the `/etc/apache2/apache2.conf` file, as this will prevent the 403/404 errors from appearing
+If you are using mod_evasive, make sure to add the following to your `/etc/apache2/apache2.conf` file
 
 ```
 <Directory /usr/share/phpmyadmin>
@@ -151,6 +151,7 @@ And then run the following command to get a certificate, replace `-d example.ca`
 ```
 sudo certbot --apache --agree-tos --redirect --hsts --staple-ocsp -d example.com --email you@domain.com
 ```
+And then follow the on-screen prompts to enable the certificate for your domain
 
 ## Create Network Shares (Optional)
    
@@ -177,8 +178,8 @@ At the bottom of the file, add your shares, changing `/your-share-folder` to the
    path = /your-share-folder
    read only = no
    writeable = Yes
-   create mask = 0755
-   directory mask = 0755
+   create mask = 0775
+   directory mask = 0775
    write list = {users} // Comma separated list of samba accounts
    valid users = {users} // Comma separated list of samba accounts
    follow symlinks = yes
@@ -192,7 +193,7 @@ Add the users that are allowed access to the system, replacing {user} with the a
 ```
 sudo useradd {user} // If you need to add a new user to the server
 sudo passwd {user} // If new user, set the users password
-sudo smbpasswd -a {user}
+sudo smbpasswd -a {user} // Add the user to samba, and set a password for account
 ```
 
 After creating a samba password for your user, you need to add them to the `/etc/samba/smbusers` file
@@ -210,7 +211,7 @@ Set the permissions: `sudo chmod 0775 /your-share-folder`
 And then restart samba to use your changes
    
 ```
-sudo ufw allow from 192.168.0.0/23 to any app Samba   // Limit shares to local network
+sudo ufw allow from 192.168.0.0/24 to any app Samba   // Limit shares to local network
 sudo systemctl restart smbd
 ```
 
