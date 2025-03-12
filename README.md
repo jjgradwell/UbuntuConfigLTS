@@ -14,12 +14,11 @@ To install a fully functional Apache server, enter each of these commands on a s
 
 ```
 sudo apt install apache2 apache2-utils libapache2-mod-security2 libapache2-mod-evasive -y
-sudo a2enmod http2 brotli rewrite headers
-
+sudo a2enmod http2 brotli rewrite headers evasive
 systemctl status apache2  // Check status
 sudo systemctl enable apache2  // Enable at boot
 apache2 -v  // Check version
-sudo usermod -a -G www-data {user}
+sudo usermod -a -G www-data **{user}**
 ```
 
 ### Fixing mod_evasive errors (ie. 403 errors for phpMyAdmin)
@@ -30,7 +29,7 @@ You need to edit the `/etc/apache2/mods-available/evasive.conf` file and modify 
 
 ```
 DOSWhitelist 127.0.0.1
-DOSWhitelist 192.168.0.*
+DOSWhitelist 192.168.0.*  # This will white list all IP address for internal network
 DOSWhitelist <public-ip>
 ````
 
@@ -49,7 +48,6 @@ sudo apt install acl // Install the file access control list package
 sudo setfacl -Rdm "g:{user}:rwx" /var/www/html
 getfacl /var/www/html  // Check permissions
 ```
-   
 
 ## Install MariaDB Database Server
 
