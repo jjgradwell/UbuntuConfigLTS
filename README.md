@@ -71,7 +71,7 @@ exit;
 ## Install PHP and switch to FPM
 
 ```
-sudo apt install php8.3 php8.3-fpm php8.3-yaml
+sudo apt install php php-fpm php-yaml
 sudo a2dismod mpm_prefork
 sudo a2enmod proxy_fcgi setenvif
 sudo a2enconf php8.3-fpm
