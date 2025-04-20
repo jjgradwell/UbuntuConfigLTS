@@ -72,7 +72,7 @@ exit;
 
 ```
 sudo apt install php php-fpm php-yaml
-sudo a2dismod mpm_prefork
+sudo a2dismod php8.3 mpm_prefork
 sudo a2enmod proxy_fcgi setenvif
 sudo a2enconf php8.3-fpm
 sudo a2enmod mpm_event
