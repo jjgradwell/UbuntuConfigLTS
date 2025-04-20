@@ -108,15 +108,22 @@ Enable site by typing `sudo a2ensite domain.com`
 sudo apt install phpmyadmin
 ```
 
-To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the `/etc/phpmyadmin/apache.conf` file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and add the following lines into the <Directory> directive
+To ensure that phpmyadmin works on systems with a strong content-security-policy, edit the `/etc/phpmyadmin/apache.conf` file by typing `sudo nano /etc/phpmyadmin/apache.conf`, and change the <Directory /usr/share/phpmyadmin> to the following
    
 ```
+<Directory /usr/share/phpmyadmin>
+    Options Indexes SymLinksIfOwnerMatch FollowSymLinks MultiViews
+    DirectoryIndex index.php
     AllowOverride all
     Require ip 127.0.0.1 ::1 192.168.0.0/23
     Require all granted
 
     <IfModule mod_security.c>
-        SecRuleEngine Off
+      SecRuleEngine Off
+    </IfModule>
+
+    <IfModule security2_module>
+      SecRuleEngine Off
     </IfModule>
 
    <IfModule mod_headers.c>
@@ -124,6 +131,19 @@ To ensure that phpmyadmin works on systems with a strong content-security-policy
       Header always set Content-Security-Policy "default-src 'self' 'unsafe-inline';"
       Header always set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
    </IfModule>
+
+    # limit libapache2-mod-php to files and directories necessary by pma
+    <IfModule mod_php7.c>
+        php_admin_value upload_tmp_dir /var/lib/phpmyadmin/tmp
+        php_admin_value open_basedir /usr/share/phpmyadmin/:/usr/share/doc/phpmyadmin/:/etc/phpmyadmin/:/var/lib/phpmyadmin/:/usr/share/php/:/usr/share/javascript/
+    </IfModule>
+
+    # PHP 8+
+    <IfModule mod_php.c>
+        php_admin_value upload_tmp_dir /var/lib/phpmyadmin/tmp
+        php_admin_value open_basedir /usr/share/phpmyadmin/:/usr/share/doc/phpmyadmin/:/etc/phpmyadmin/:/var/lib/phpmyadmin/:/usr/share/php/:/usr/share/javascript/
+    </IfModule>
+</Directory>
 ```
 
 If you are using mod_evasive, make sure to add the following to your `/etc/apache2/apache2.conf` file
