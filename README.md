@@ -58,13 +58,13 @@ sudo systemctl enable mariadb  // Enable at boot
 sudo mysql_secure_installation  // Secure installation
 ```
 
-Once installed, create an admin acount
+Once installed, create an admin acount, these commands are case sensitive
 
 ```
 sudo mysql -u root
-CREATE USER 'admin'@'localhost' IDENTIFIED BY 'your-preferred-password'; // This command is case sensitive
-GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION; // This command is case sensitive
-FLUSH PRIVILEGES; // This command is case sensitive
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'your-preferred-password';
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
 exit;
 ```
 
