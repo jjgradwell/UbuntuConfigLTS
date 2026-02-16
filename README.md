@@ -18,6 +18,7 @@ sudo a2enmod http2 brotli rewrite headers
 systemctl status apache2  // Check status
 sudo systemctl enable apache2  // Enable at boot
 apache2 -v  // Check version
+sudo a2enmod ssl
 sudo usermod -a -G www-data {user}
 ```
 
