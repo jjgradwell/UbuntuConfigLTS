@@ -14,7 +14,7 @@ To install a fully functional Apache server, enter each of these commands on a s
 
 ```
 sudo apt install apache2 apache2-utils libapache2-mod-security2 libapache2-mod-evasive -y
-sudo a2enmod http2 brotli rewrite headers
+sudo a2enmod http2 brotli rewrite headers security2
 systemctl status apache2  // Check status
 sudo systemctl enable apache2  // Enable at boot
 apache2 -v  // Check version
