@@ -44,7 +44,7 @@ DOSWhitelist <public-ip>
 
 ```
 sudo apt install acl // Install the file access control list package
-sudo setfacl -Rm "u:{user}:rwx,g:{user}:rwx" /var/www/html // To allow your user read/write/execute permissions
+sudo setfacl -Rm "u:{user}:rwx,g:{user}:rwx" /var/www // To allow your user read/write/execute permissions
 getfacl /var/www/html  // Check permissions
 ```
 
@@ -85,7 +85,7 @@ Backup the original file by typing `sudo cp /etc/apache2/sites-available/000-def
 
 Change `domain.com` to match your domain name.
 
-Create a config by typing `sudo nano /etc/apache2/sites-available/domain.com.conf`
+Create a config by typing `sudo nano /etc/apache2/sites-available/001-domain.com.conf`
 
 ```
    <VirtualHost *:80>
@@ -98,7 +98,7 @@ Create a config by typing `sudo nano /etc/apache2/sites-available/domain.com.con
    </VirtualHost>
 ```
 
-Enable site by typing `sudo a2ensite domain.com`
+Enable site by typing `sudo a2ensite 001-domain.com.conf`
 
 
 ## Install phpMyAdmin
