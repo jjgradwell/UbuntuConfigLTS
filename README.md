@@ -68,6 +68,11 @@ sudo systemctl restart apache2
 php --version
 ```
 
+## Install popular tools
+```
+sudo apt-get install pdfgrep popler-tools
+```
+
 ## Create your virtual host files (for each domain you are creating)
 
 Backup the original file by typing `sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/000-default.conf.bak`
